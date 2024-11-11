@@ -66,6 +66,7 @@ final dipakai untuk nilai yang tidak akan berubah setelah inisialisasi pertama, 
     - Column :
         - Digunakan untuk menampilkan widget secara vertikal (atas ke bawah)
         - Implementasi : 
+
 ```dart
 import 'package:flutter/material.dart';
 
@@ -93,9 +94,11 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+
     - Row : 
         - Digunakan untuk menampilkan widget secara horizontal (kiri ke kanan)
         - Implementasi : 
+
 ```dart
 import 'package:flutter/material.dart';
 
@@ -123,6 +126,7 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+
 3. Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
     - Elemen Input yang Digunakan : 
         - TextFormField
@@ -167,7 +171,9 @@ onTap: () {
   }
 }
 ```
+
     - Navigator.pushReplacement() pada LeftDrawer : 
+
 ```dart
 onTap: () {
   Navigator.pushReplacement(
@@ -178,7 +184,9 @@ onTap: () {
   );
 }
 ```
+
     - Navigator.pop() pada ProductFormPage : 
+
 ```dart
 onPressed: () {
   Navigator.pop(context);
