@@ -46,19 +46,142 @@ final dipakai untuk nilai yang tidak akan berubah setelah inisialisasi pertama, 
     - Jika tombol Logout ditekan, Snackbar akan menunjukkan "Kamu telah menekan tombol Logout".
 - Untuk memastikan Snackbar tidak bertumpuk, kode menggunakan `ScaffoldMessenger.of(context)..hideCurrentSnackBar()` sebelum menampilkan Snackbar baru.
 
+## Tugas 8
+1. Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+    - Dalam Flutter, kata kunci const digunakan untuk membuat nilai yang bersifat konstan (immutable) dan compile-time constant. Artinya, nilai tersebut tidak bisa berubah setelah diinisialisasi dan akan dievaluasi saat kompilasi
+    - Keuntungan Menggunakan const :
+        - Optimasi Performa: Objek yang di-deklarasikan sebagai const akan dibuat hanya satu kali di memori, sehingga lebih hemat memori.
+        - Pengurangan Overhead Runtime: Karena objek sudah dievaluasi saat kompilasi, tidak perlu lagi dievaluasi saat runtime.
+        - Mencegah Mutasi Data: const menjamin objek bersifat immutable, sehingga lebih aman dan menghindari perubahan data yang tidak diinginkan.
+    - Kapan Menggunakan const
+        - Saat Anda memiliki nilai tetap yang tidak akan berubah selama aplikasi berjalan
+        - Saat membuat widget stateless di Flutter, gunakan const untuk widget yang tidak berubah agar widget tidak di-rebuild
+        - Saat bekerja dengan koleksi (List, Map, Set) yang immutable.
+    - Kapan Sebaiknya Tidak Menggunakan const
+        - Saat nilai dapat berubah selama runtime
+        - Jika objek tersebut membutuhkan evaluasi yang tidak bisa dilakukan saat compile-time
 
+2. Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+    - Column dan Row adalah widget dasar untuk membuat tata letak vertikal atau horizontal.
+    - Column :
+        - Digunakan untuk menampilkan widget secara vertikal (atas ke bawah)
+        - Implementasi : 
+```dart
+import 'package:flutter/material.dart';
 
+void main() {
+  runApp(MyApp());
+}
 
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text("Contoh Column")),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // Tengah pada sumbu utama
+          crossAxisAlignment: CrossAxisAlignment.start, // Kiri pada sumbu silang
+          children: <Widget>[
+            Text("Item 1"),
+            Text("Item 2"),
+            Text("Item 3"),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+    - Row : 
+        - Digunakan untuk menampilkan widget secara horizontal (kiri ke kanan)
+        - Implementasi : 
+```dart
+import 'package:flutter/material.dart';
 
-## Getting Started
+void main() {
+  runApp(MyApp());
+}
 
-This project is a starting point for a Flutter application.
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text("Contoh Row")),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center, // Tengah pada sumbu utama
+          crossAxisAlignment: CrossAxisAlignment.center, // Tengah pada sumbu silang
+          children: <Widget>[
+            Icon(Icons.star, color: Colors.blue, size: 50),
+            Icon(Icons.star, color: Colors.red, size: 50),
+            Icon(Icons.star, color: Colors.green, size: 50),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+3. Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+    - Elemen Input yang Digunakan : 
+        - TextFormField
+            - Digunakan untuk mengumpulkan data dari pengguna dalam bentuk teks. Di sini, terdapat lima TextFormField untuk mengumpulkan informasi produk:
+                - Product Name: Mengumpulkan nama produk.
+                - Product Price: Mengumpulkan harga produk.
+                - Product Stock: Mengumpulkan jumlah stok produk.
+                - Product Description: Mengumpulkan deskripsi produk.
+                - Product Image: Mengumpulkan URL atau path gambar produk.
+        - ElevatedButton
+            - Digunakan sebagai tombol untuk menyimpan data produk yang telah diisi oleh pengguna.
+    - Elemen Input yang Tidak Digunakan
+        - DropdownButtonFormField
+            - Menampilkan daftar pilihan dalam bentuk dropdown
+        - Checkbox 
+            - Menampilkan kotak centang untuk pilihan boolean (true/false)
+        - DatePicker
+            - Menampilkan dialog untuk memilih tanggal
+        - Slider dan masih banyak lagi
+            - Menyediakan kontrol untuk memilih nilai dari rentang tertentu
+            - Masih banyak lagi input yang belum digunakan
 
-A few resources to get you started if this is your first Flutter project:
+4. Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+    - Menggunakan properti theme pada widget MaterialApp. Dengan menggunakan tema, kita dapat menjaga konsistensi tampilan dan gaya di seluruh aplikasi
+    - colorScheme : 
+        - Menggunakan ColorScheme.fromSwatch() untuk menentukan warna utama (primarySwatch) dengan warna hijau (Colors.green).
+        - Menggunakan .copyWith() untuk menetapkan warna sekunder (secondary) menjadi Colors.greenAccent.
+    - Penggunaan Tema di Widget Lain : 
+        - AppBar : backgroundColor: Theme.of(context).colorScheme.primary
+        - LeftDrawer : color: Theme.of(context).colorScheme.primary
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+    - Menerapkan navigasi antar halaman menggunakan Navigator. Di Flutter, ada beberapa cara untuk menangani navigasi antar halaman (routing), yaitu dengan memanfaatkan Navigator secara eksplisit melalui Navigator.push(), Navigator.pushReplacement(), dan Navigator.pop().
+    - Navigator.push() pada ItemCard : 
+```dart
+onTap: () {
+  if (item.name == "Add Product") {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ProductFormPage()),
+    );
+  }
+}
+```
+    - Navigator.pushReplacement() pada LeftDrawer : 
+```dart
+onTap: () {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => MyHomePage(),
+    ),
+  );
+}
+```
+    - Navigator.pop() pada ProductFormPage : 
+```dart
+onPressed: () {
+  Navigator.pop(context);
+  _formKey.currentState!.reset();
+},
+```
