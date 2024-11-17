@@ -2,6 +2,8 @@ import 'package:checkout_ify/pages/product_form.dart';
 import 'package:flutter/material.dart';
 import 'package:checkout_ify/pages/home.dart';
 
+import '../pages/list_product.dart';
+
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
 
@@ -46,11 +48,20 @@ class LeftDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.add),
             title: const Text('Add Product'),
-            // Bagian redirection ke MoodEntryFormPage
             onTap: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const ProductFormPage()),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.list),
+            title: const Text('Product List'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProductPage()),
               );
             },
           ),

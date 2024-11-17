@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:checkout_ify/widgets/left_drawer.dart';
-import 'package:checkout_ify/widgets/product_card.dart';
+import 'package:checkout_ify/widgets/navigation_card.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});

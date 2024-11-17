@@ -1,5 +1,7 @@
+import 'package:checkout_ify/pages/login.dart';
 import 'package:flutter/material.dart';
-import 'package:checkout_ify/pages/home.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,17 +12,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return Provider(
+      create : (_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      },
+      child :  MaterialApp(
       title: 'Checkoutify',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.green,
-        ).copyWith(secondary: Colors.greenAccent),
-        useMaterial3: true,
-        fontFamily: "Poppins"
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.green,
+          ).copyWith(secondary: Colors.greenAccent),
+          useMaterial3: true,
+          fontFamily: "Poppins"
       ),
-      home: MyHomePage(),
+      home: const LoginPage(),
+      ),
     );
   }
 }
